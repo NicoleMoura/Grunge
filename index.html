@@ -38,7 +38,7 @@
             overflow-x: hidden;
         }
 
-        /* Accessibility Bar */
+        /* Barra de Acessibilidade */
         .accessibility-bar {
             background-color: #000;
             padding: 10px 5%;
@@ -66,7 +66,7 @@
             background: var(--accent-color);
         }
 
-        /* Layout Structure */
+        /* Cabeçalho Hero */
         header {
             padding: clamp(60px, 10vh, 120px) 5%;
             text-align: center;
@@ -123,7 +123,7 @@
             text-transform: uppercase;
         }
 
-        /* Features Grid */
+        /* Grid de Destaques */
         .grid-features {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(clamp(250px, 30vw, 350px), 1fr));
@@ -136,15 +136,30 @@
             border-radius: var(--border-radius);
             box-shadow: var(--box-shadow);
             border: 1px solid #2a2a2a;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: calc(var(--border-radius) / 2);
+            filter: grayscale(100%) contrast(120%);
+            transition: filter 0.3s ease;
+        }
+
+        .card:hover img {
+            filter: grayscale(0%) contrast(100%);
         }
 
         .card h3 {
             font-size: 1.4rem;
-            margin-bottom: 15px;
             color: var(--accent-color);
         }
 
-        /* Carousel Section */
+        /* Seção do Carrossel */
         .carousel-container {
             position: relative;
             background-color: var(--surface-color);
@@ -195,7 +210,7 @@
             font-weight: bold;
         }
 
-        /* FAQ Accordion */
+        /* Acordeão de FAQ */
         .accordion-item {
             background-color: var(--surface-color);
             border-radius: var(--border-radius);
@@ -238,7 +253,7 @@
             color: var(--text-muted);
         }
 
-        /* High Contrast Shielding Rule */
+        /* Regra de Blindagem do Modo de Alto Contraste */
         body.high-contrast, body.high-contrast *:not(i):not(.icon) {
             background-color: #000 !important;
             color: #fff !important;
@@ -269,19 +284,22 @@
     </header>
 
     <section>
-        <h2 class="section-title">O Que Esperar do Acervo</h2>
+        <h2 class="section-title">Ícones do Movimento</h2>
         <div class="grid-features">
             <div class="card">
-                <h3>Gravações Raríssimas</h3>
-                <p>Acesso a bootlegs não lançados, ensaios de garagem e performances lendárias restauradas em altíssima fidelidade sonora.</p>
+                <img src="https://images.unsplash.com/photo-1599818815147-9df073b6795b?q=80&w=600&auto=format&fit=crop" alt="Guitarrista grunge com flanela no palco">
+                <h3>O Som de Seattle</h3>
+                <p>Nirvana e Pearl Jam definiram o padrão com guitarras distorcidas, afinações baixas e letras introspectivas.</p>
             </div>
             <div class="card">
-                <h3>Documentários Exclusivos</h3>
-                <p>Entrevistas inéditas com produtores, roadies e músicos que vivenciaram a explosão do movimento em Seattle.</p>
+                <img src="https://images.unsplash.com/photo-1563229653-a55e2d63493e?q=80&w=600&auto=format&fit=crop" alt="Vocalista de rock cantando intensamente">
+                <h3>Vozes Angustiadas</h3>
+                <p>Layne Staley (Alice in Chains) e Chris Cornell (Soundgarden) trouxeram vocais poderosos e sombrios.</p>
             </div>
             <div class="card">
-                <h3>Comunidade Underground</h3>
-                <p>Fórum fechado para colecionadores de vinil, críticos e entusiastas da estética e cultura alternativa dos anos 90.</p>
+                <img src="https://images.unsplash.com/photo-1549497538-303791108f94?q=80&w=600&auto=format&fit=crop" alt="Baterista tocando em um show de rock">
+                <h3>A Energia Visceral</h3>
+                <p>Performances ao vivo explosivas que capturavam a apatia e rebeldia de toda uma geração.</p>
             </div>
         </div>
     </section>
@@ -298,8 +316,7 @@
 
     <section>
         <h2 class="section-title">Perguntas Frequentes</h2>
-        <div id="accordion-container">
-            </div>
+        <div id="accordion-container"></div>
     </section>
 
     <footer>
@@ -329,7 +346,7 @@
             document.body.classList.toggle('high-contrast');
         });
 
-        // --- 2. CARROSSEL (ARRAY DE OBJETOS) ---
+        // --- 2. CARROSSEL VIA ARRAY DE OBJETOS ---
         const testimonials = [
             {
                 quote: "A qualidade das gravações inéditas do Soundgarden me fez sentir de volta a 1992. Uma experiência imperdível.",
@@ -378,7 +395,7 @@
             showSlide(currentSlide);
         });
 
-        // --- 3. ACORDEÃO (ARRAY DE OBJETOS) ---
+        // --- 3. ACORDEÃO VIA ARRAY DE OBJETOS ---
         const faqItems = [
             {
                 question: "Como funciona o acesso ao material raro?",
@@ -411,18 +428,15 @@
                 accordionContainer.appendChild(accItem);
             });
 
-            // Adiciona evento de clique
             const headers = accordionContainer.querySelectorAll('.accordion-header');
             headers.forEach(header => {
                 header.addEventListener('click', () => {
                     const content = header.nextElementSibling;
                     const isOpen = content.classList.contains('active');
                     
-                    // Fecha todos os outros
                     document.querySelectorAll('.accordion-content').forEach(c => c.classList.remove('active'));
                     document.querySelectorAll('.accordion-header span:last-child').forEach(s => s.textContent = '+');
 
-                    // Alterna o atual
                     if (!isOpen) {
                         content.classList.add('active');
                         header.querySelector('span:last-child').textContent = '-';
@@ -431,7 +445,6 @@
             });
         }
 
-        // Inicialização
         document.addEventListener('DOMContentLoaded', () => {
             renderCarousel();
             renderAccordion();
