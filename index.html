@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Revival Grunge 90s - A Verdadeira Era do Rock</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #121212;
+            --surface-color: #1a1a1a;
+            --accent-color: #ff3e3e;
+            --text-color: #e0e0e0;
+            --text-muted: #a0a0a0;
+            --border-radius: 16px;
+            --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            --font-size-base: 16px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            font-size: var(--font-size-base);
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Accessibility Bar */
+        .accessibility-bar {
+            background-color: #000;
+            padding: 10px 5%;
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #333;
+        }
+
+        .acc-btn {
+            background: #262626;
+            color: #fff;
+            border: 1px solid #444;
+            padding: 5px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .acc-btn:hover {
+            background: var(--accent-color);
+        }
+
+        /* Layout Structure */
+        header {
+            padding: clamp(60px, 10vh, 120px) 5%;
+            text-align: center;
+            background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, var(--bg-color) 100%);
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw + 1rem, 4.5rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            margin-bottom: 20px;
+            color: #fff;
+            text-shadow: 3px 3px 0px var(--accent-color);
+        }
+
+        p.hero-subtitle {
+            font-size: clamp(1rem, 2vw + 0.5rem, 1.5rem);
+            color: var(--text-muted);
+            max-width: 800px;
+            margin: 0 auto 30px auto;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: #fff;
+            padding: 16px 36px;
+            border-radius: var(--border-radius);
+            font-weight: 900;
+            text-transform: uppercase;
+            text-decoration: none;
+            box-shadow: var(--box-shadow);
+            transition: transform 0.2s ease, background-color 0.2s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            background-color: #e62e2e;
+        }
+
+        section {
+            padding: clamp(40px, 8vh, 80px) 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: clamp(1.8rem, 3vw, 2.8rem);
+            margin-bottom: 40px;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        /* Features Grid */
+        .grid-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(clamp(250px, 30vw, 350px), 1fr));
+            gap: clamp(20px, 4vw, 40px);
+        }
+
+        .card {
+            background-color: var(--surface-color);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            border: 1px solid #2a2a2a;
+        }
+
+        .card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--accent-color);
+        }
+
+        /* Carousel Section */
+        .carousel-container {
+            position: relative;
+            background-color: var(--surface-color);
+            border-radius: var(--border-radius);
+            padding: 40px;
+            box-shadow: var(--box-shadow);
+            border: 1px solid #2a2a2a;
+            min-height: 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .carousel-slide {
+            display: none;
+        }
+
+        .carousel-slide.active {
+            display: block;
+        }
+
+        .carousel-quote {
+            font-size: clamp(1.1rem, 1.5vw, 1.3rem);
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+
+        .carousel-author {
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+
+        .carousel-nav {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            justify-content: flex-end;
+        }
+
+        .nav-btn {
+            background: #262626;
+            color: #fff;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* FAQ Accordion */
+        .accordion-item {
+            background-color: var(--surface-color);
+            border-radius: var(--border-radius);
+            margin-bottom: 15px;
+            box-shadow: var(--box-shadow);
+            border: 1px solid #2a2a2a;
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            width: 100%;
+            padding: 20px;
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .accordion-content {
+            padding: 0 20px 20px 20px;
+            display: none;
+            color: var(--text-muted);
+        }
+
+        .accordion-content.active {
+            display: block;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 5%;
+            background-color: #0a0a0a;
+            border-top: 1px solid #222;
+            color: var(--text-muted);
+        }
+
+        /* High Contrast Shielding Rule */
+        body.high-contrast, body.high-contrast *:not(i):not(.icon) {
+            background-color: #000 !important;
+            color: #fff !important;
+            border: 1px solid #ff0 !important;
+            background-image: none !important;
+            box-shadow: none !important;
+            text-shadow: none !important;
+        }
+        body.high-contrast a, body.high-contrast button {
+            color: #ff0 !important;
+            text-decoration: underline !important;
+            font-weight: bold !important;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="accessibility-bar">
+        <button class="acc-btn" id="btn-decrease" aria-label="Diminuir Fonte">A-</button>
+        <button class="acc-btn" id="btn-increase" aria-label="Aumentar Fonte">A+</button>
+        <button class="acc-btn" id="btn-contrast" aria-label="Alto Contraste">Contraste</button>
+    </div>
+
+    <header>
+        <h1>A Era Distorcida do Grunge 90s</h1>
+        <p class="hero-subtitle">Reviva a potência, a atitude e o som visceral das garagens de Seattle que mudaram a história do rock para sempre.</p>
+        <a href="#inscrever" class="cta-btn">Garantir Meu Acesso Exclusivo</a>
+    </header>
+
+    <section>
+        <h2 class="section-title">O Que Esperar do Acervo</h2>
+        <div class="grid-features">
+            <div class="card">
+                <h3>Gravações Raríssimas</h3>
+                <p>Acesso a bootlegs não lançados, ensaios de garagem e performances lendárias restauradas em altíssima fidelidade sonora.</p>
+            </div>
+            <div class="card">
+                <h3>Documentários Exclusivos</h3>
+                <p>Entrevistas inéditas com produtores, roadies e músicos que vivenciaram a explosão do movimento em Seattle.</p>
+            </div>
+            <div class="card">
+                <h3>Comunidade Underground</h3>
+                <p>Fórum fechado para colecionadores de vinil, críticos e entusiastas da estética e cultura alternativa dos anos 90.</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2 class="section-title">Depoimentos dos Membros</h2>
+        <div class="carousel-container" id="carousel">
+            <div class="carousel-nav">
+                <button class="nav-btn" id="prev-slide" aria-label="Anterior">&lt;</button>
+                <button class="nav-btn" id="next-slide" aria-label="Próximo">&gt;</button>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2 class="section-title">Perguntas Frequentes</h2>
+        <div id="accordion-container">
+            </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Revival Grunge 90s. Todos os direitos reservados. O som autêntico permanece vivo.</p>
+    </footer>
+
+    <script>
+        // --- 1. ACESSIBILIDADE (FONTE E CONTRASTE) ---
+        let currentFontSize = 16;
+        const rootElement = document.documentElement;
+
+        document.getElementById('btn-increase').addEventListener('click', () => {
+            if (currentFontSize < 24) {
+                currentFontSize += 2;
+                rootElement.style.setProperty('--font-size-base', `${currentFontSize}px`);
+            }
+        });
+
+        document.getElementById('btn-decrease').addEventListener('click', () => {
+            if (currentFontSize > 12) {
+                currentFontSize -= 2;
+                rootElement.style.setProperty('--font-size-base', `${currentFontSize}px`);
+            }
+        });
+
+        document.getElementById('btn-contrast').addEventListener('click', () => {
+            document.body.classList.toggle('high-contrast');
+        });
+
+        // --- 2. CARROSSEL (ARRAY DE OBJETOS) ---
+        const testimonials = [
+            {
+                quote: "A qualidade das gravações inéditas do Soundgarden me fez sentir de volta a 1992. Uma experiência imperdível.",
+                author: "Marcos V., Colecionador"
+            },
+            {
+                quote: "A curadoria desse acervo é surreal. Encontrei shows completos do Alice in Chains que achei que tinham sido perdidos.",
+                author: "Renata S., Jornalista Musical"
+            },
+            {
+                quote: "O Grunge não foi só música, foi um estilo de vida. Essa plataforma resgata essa essência com perfeição técnica.",
+                author: "Felipe K., Guitarrista"
+            }
+        ];
+
+        let currentSlide = 0;
+        const carouselContainer = document.getElementById('carousel');
+        const navContainer = carouselContainer.querySelector('.carousel-nav');
+
+        function renderCarousel() {
+            testimonials.forEach((item, index) => {
+                const slide = document.createElement('div');
+                slide.className = `carousel-slide ${index === 0 ? 'active' : ''}`;
+                slide.innerHTML = `
+                    <p class="carousel-quote">"${item.quote}"</p>
+                    <p class="carousel-author">- ${item.author}</p>
+                `;
+                carouselContainer.insertBefore(slide, navContainer);
+            });
+        }
+
+        function showSlide(index) {
+            const slides = document.querySelectorAll('.carousel-slide');
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+        }
+
+        document.getElementById('next-slide').addEventListener('click', () => {
+            currentSlide = (currentSlide + 1) % testimonials.length;
+            showSlide(currentSlide);
+        });
+
+        document.getElementById('prev-slide').addEventListener('click', () => {
+            currentSlide = (currentSlide - 1 + testimonials.length) % testimonials.length;
+            showSlide(currentSlide);
+        });
+
+        // --- 3. ACORDEÃO (ARRAY DE OBJETOS) ---
+        const faqItems = [
+            {
+                question: "Como funciona o acesso ao material raro?",
+                answer: "Após a confirmação da assinatura, você recebe acesso imediato à biblioteca digital e aos áudios remasterizados direto no seu player."
+            },
+            {
+                question: "As gravações são oficiais?",
+                answer: "Trabalhamos com masterizações autorizadas e acervos históricos restaurados por engenheiros de áudio especializados na sonoridade 90s."
+            },
+            {
+                question: "Posso cancelar minha assinatura a qualquer momento?",
+                answer: "Sim, o cancelamento pode ser feito com um clique através do painel do usuário sem burocracia ou multas."
+            }
+        ];
+
+        function renderAccordion() {
+            const accordionContainer = document.getElementById('accordion-container');
+            faqItems.forEach((item) => {
+                const accItem = document.createElement('div');
+                accItem.className = 'accordion-item';
+                accItem.innerHTML = `
+                    <button class="accordion-header">
+                        <span>${item.question}</span>
+                        <span>+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>${item.answer}</p>
+                    </div>
+                `;
+                accordionContainer.appendChild(accItem);
+            });
+
+            // Adiciona evento de clique
+            const headers = accordionContainer.querySelectorAll('.accordion-header');
+            headers.forEach(header => {
+                header.addEventListener('click', () => {
+                    const content = header.nextElementSibling;
+                    const isOpen = content.classList.contains('active');
+                    
+                    // Fecha todos os outros
+                    document.querySelectorAll('.accordion-content').forEach(c => c.classList.remove('active'));
+                    document.querySelectorAll('.accordion-header span:last-child').forEach(s => s.textContent = '+');
+
+                    // Alterna o atual
+                    if (!isOpen) {
+                        content.classList.add('active');
+                        header.querySelector('span:last-child').textContent = '-';
+                    }
+                });
+            });
+        }
+
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCarousel();
+            renderAccordion();
+        });
+    </script>
+</body>
+</html>
